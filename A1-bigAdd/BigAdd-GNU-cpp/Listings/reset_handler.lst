@@ -1,0 +1,271 @@
+ARM GAS  Reset_Handler.S 			page 1
+
+
+   1              	;@============================================================================
+   2              	;@
+   3              	;@ ** Handing this file in is optional but recommended.  
+   4              	;@ ** Only hand it in if you have added/modified testcases or testing code.
+   5              	;@
+   6              	;@ Student Name 1: student1
+   7              	;@ Student 1 #: 123456781
+   8              	;@ Student 1 userid (email): stu1 (stu1@sfu.ca)
+   9              	;@
+  10              	;@ Student Name 2: student2
+  11              	;@ Student 2 #: 123456782
+  12              	;@ Student 2 userid (email): stu2 (stu2@sfu.ca)
+  13              	;@
+  14              	;@ Below, edit to list any people who helped you with the code in this file,
+  15              	;@      or put ‘none’ if nobody helped (the two of) you.
+  16              	;@
+  17              	;@ Helpers: _everybody helped us/me with the assignment (list names or put ‘none’)__
+  18              	;@
+  19              	;@ Also, reference resources beyond the course textbooks and the course pages on Canvas
+  20              	;@ that you used in making your submission.
+  21              	;@
+  22              	;@ Resources:  ___________
+  23              	;@
+  24              	;@% Instructions:
+  25              	;@ * Put your name(s), student number(s), userid(s) in the above section.
+  26              	;@ * Edit the "Helpers" line and "Resources" line.
+  27              	;@ * Your group name should be "<userid1>_<userid2>" (eg. stu1_stu2)
+  28              	;@ * Form groups as described at:  https://courses.cs.sfu.ca/docs/students
+  29              	;@ * Submit your file(s) to courses.cs.sfu.ca
+  30              	;@
+  31              	;@ Name        : Reset_Handler.s
+  32              	;@ Description : Testing code and testcases for Assignment
+  33              	;@ Copyright (C) 2020 Craig Scratchley    wcs (at) sfu (dot) ca  
+  34              	;@============================================================================
+  35              	
+  36              	;@ Highly recommended in Edit > Configuration 
+  37              	;@ Set "Auto Indent" to: "None"
+  38              	;@ Tabs set for 8 characters for ASM files
+  39              	
+  40              		.EQU	WORDS_PER_ARRAY, 	4 
+  41              		.EQU	BYTES_PER_WORD,		4
+  42              		.EQU	BYTES_PER_ARRAY,	WORDS_PER_ARRAY * BYTES_PER_WORD
+  43              		.EQU	ARRAYS_PER_ROW,		3
+  44              		.EQU	BYTES_PER_ROW,		BYTES_PER_ARRAY * ARRAYS_PER_ROW + 4 * BYTES_PER_WORD 
+  45              	
+  46              		.EQU	RAND_REG,		6 ;@ regs to fill with random
+  47              		.EQU	USED_REG,		3 ;@ number of "other" registers that are used
+  48              	
+  49              		.org 0
+  50              		
+  51              		.text			;@ start storing in simulated ROM
+  52              	
+  53              	Reset_Handler:
+  54              		.global Reset_Handler				;@ The entry point on reset
+  55              		
+  56 0000 18D19FE5 		ldr sp, =0x40004000				;@ Initialize SP just past the end of RAM	
+  57 0004 000000EA 		b	main
+ARM GAS  Reset_Handler.S 			page 2
+
+
+  58              	
+  59              	;@	.global	repeat
+  60              	
+  61              	;@ Repeat the bl** instruction that branched to this label -- used at the end of a program.
+  62              	;@   It is recommended when you hit the breakpoint for this label to single step to find out where
+  63              	;@   in the program called this subroutine.
+  64 0008 04F04EE2 	repeat:	sub	pc, lr, #4	;@ repeat the calling bl instruction, not go on to the next instruction.
+  65              	
+  66              	;@ you can improve the testing code below if you want to.  	
+  67 000c 10419FE5 	main:	ldr	r4, =TestTableBigAdd + BYTES_PER_ARRAY	;@ load with address after bigN0 (i.e. bigN1)
+  68 0010 10519FE5 		ldr	r5, =bigN				;@ load address of bigN variable
+  69              	
+  70 0014 490F8FE2 		adrl	r0, rndLoc			;@ use address after test table to seed Random Num Generator
+  70      0000A0E1 
+  71 001c 08119FE5 		ldr	r1, =rndSeed				
+  72 0020 000081E5 		str	r0, [r1]			;@ store seed in RAM for use by RNG
+  73              		
+  74 0024 0F0014E9 	loop:	ldmdb	r4, {r0-r3}
+  75 0028 010070E3 		cmn	r0, #1				;@ compare size of bigN0 with -1 marking end of table
+  76 002c F5FFFF0B 		bleq	repeat				;@ loop here if program successful
+  77              		
+  78 0030 0F0085E8 		stmia	r5, {r0-r3}			;@ copy bigN0 to bigN
+  79              		
+  80              		;@ fill the registers {r6-r11} with some random values 
+  81              		;@ 1) put random values in memory
+  82 0034 F4009FE5 		ldr 	r0, =randrb
+  83 0038 250000EB 		bl	rndGen
+  84              	
+  85              		;@ 2) load registers {r6-r11} from memory 
+  86 003c C00F90E8 		ldmia 	r0, {r6-r11}	
+  87              		
+  88              		;@ save  registers {r4-r5, SP} in memory for further check
+  89 0040 ECC09FE5 		ldr  	r12, =usedrb
+  90 0044 30208CE8 		stmia 	r12, {r4-r5, sp}	
+  91              		
+  92 0048 0500A0E1 		mov	r0, r5
+  93 004c 0410A0E1 		mov	r1, r4
+  94 0050 242094E5 		ldr 	r2, [r4, #BYTES_PER_ARRAY*2 + BYTES_PER_WORD]	;@ load  maxN0Size
+  95              		
+  96 0054 FEFFFFEB 		bl	bigAdd			;@ branch and link with our subroutine
+  97              	
+  98 0058 D8109FE5 		ldr 	r1, =usedra	
+  99 005c 302081E8 		stmia 	r1, {r4-r5, sp}		
+ 100              		
+ 101 0060 04002DE5 		push	{r0}			;@ put return value on stack
+ 102              	
+ 103 0064 C8009FE5 		ldr  	r0, =usedrb 
+ 104 0068 0C20A0E3 		mov	r2, #(USED_REG * 4)	;@ number of registers to compare	
+ 105 006c FEFFFFEB 		bl	memcmp			;@ compare using library function
+ 106              		
+ 107 0070 000050E3 		cmp	r0, #0			;@ are the current values of registers and their previous values equal?	
+ 108 0074 E3FFFF1B 	p4r5sp:	blne	repeat			;@ loop here if a problem with r4, r5, or sp
+ 109              		
+ 110              		;@ check if the registers {r8-r10} are changed during the bigAdd. 
+ 111              		;@    If stack is used properly then their values should not change.
+ 112 0078 B0009FE5 		ldr  	r0, =randrb 
+ 113 007c B8109FE5 		ldr  	r1, =randra	
+ARM GAS  Reset_Handler.S 			page 3
+
+
+ 114 0080 C00F81E8 		stmia 	r1, {r6-r11}	
+ 115 0084 1820A0E3 		mov	r2, #(RAND_REG * 4)	;@ number of registers to compare	
+ 116 0088 FEFFFFEB 		bl	memcmp			;@ compare using library function
+ 117              		
+ 118 008c 000050E3 		cmp	r0, #0			;@ is the current values of registers and their previous values equal?	
+ 119 0090 04009DE4 		pop	{r0}			;@ get bigAdd return value back from stack.
+ 120 0094 DBFFFF1B 	p6r11:	blne	repeat			;@ loop here if a problem with r6-r11
+ 121              	
+ 122              		;@load expected return value and check against actual return value
+ 123 0098 281094E5 		ldr 	r1, [r4, #BYTES_PER_ARRAY*2 + 2*BYTES_PER_WORD]	
+ 124 009c 010050E1 		cmp 	r0, r1
+ 125 00a0 D8FFFF1B 	retWrg:	blne 	repeat			;@ loop here if return value Wrong
+ 126              	
+ 127              		;@ compare to check whether an error correctly occurred and therefore further checks can be skippe
+ 128 00a4 010070E3 		cmp 	r0, #-1			;@ translated to "   cmn r0, #1"
+ 129 00a8 0700000A 		beq	nxtRow
+ 130              		
+ 131              		;@ check whether the calculated and expected sums are equal.
+ 132 00ac 0500A0E1 		mov 	r0, r5 
+ 133 00b0 101084E2 		add	r1, r4,#BYTES_PER_ARRAY	;@put address of bigNR in r1
+ 134 00b4 002091E5 		ldr	r2, [r1]
+ 135 00b8 012082E2 		add	r2, r2, #1		;@ add 1 word because size takes a word and needs to be compared too.
+ 136 00bc 0221A0E1 		mov	r2, r2, lsl #2		;@ quadruple to get number of bytes to compare
+ 137 00c0 FEFFFFEB 		bl	memcmp			;@ compare bytes using library function
+ 138              		
+ 139 00c4 000050E3 		cmp	r0, #0			;@ is bigNR and bigN equal?
+ 140 00c8 CEFFFF1B 	notEq:	blne	repeat			;@ loop if test failure detected -- bigNR and bigN not equal
+ 141              	
+ 142 00cc 404084E2 	nxtRow:	add	r4, r4, #BYTES_PER_ROW	;@go to next "row" of table
+ 143 00d0 D3FFFFEA 		b	loop			;@loop back for next row
+ 144              	
+ 145              	;@ function rndGen to generate random numbers
+ 146 00d4 30402DE9 	rndGen:	push	{r4-r5, lr}		;@ also push link register with return location
+ 147 00d8 0040A0E1 		mov	r4, r0			;@ r0 has base address to write results
+ 148 00dc 1450A0E3 		mov 	r5, #(RAND_REG - 1) * BYTES_PER_WORD
+ 149 00e0 44309FE5 		ldr	r3, =rndSeed
+ 150 00e4 030093E8 		ldmia	r3, {r0, r1}
+ 151              	
+ 152 00e8 060000EB 	rgLoop:	bl	myRand			;@ simple rand function
+ 153 00ec 050084E7 		str    	r0, [r4, r5]
+ 154 00f0 045055E2 		subs   	r5, #BYTES_PER_WORD
+ 155 00f4 FBFFFF5A 		bpl 	rgLoop
+ 156              	
+ 157 00f8 2C309FE5 		ldr	r3, =rndSeed		;@ we could optimize this out.
+ 158 00fc 030083E8 		stmia	r3, {r0, r1}
+ 159              	
+ 160 0100 0400A0E1 		mov	r0, r4			;@ subroutine returns back the base address in r0
+ 161 0104 3080BDE8 		pop	{r4-r5, pc}		;@ also pop return location into program counter
+ 162              	
+ 163              	myRand:
+ 164              	;@ from:  http://hackipedia.org/Platform/3D0/html,%203DO%20SDK%20Documentation/Type%20A/tktfldr/acb
+ 165              	
+ 166              	;@ enter with seed in R0 (32 bits), R1 (1 bit in least significant bit)
+ 167              	;@ R2 is used as a temporary register.
+ 168              	;@ on exit the new seed is in R0 and R1 as before
+ 169              	;@ Note that a seed of 0 will always produce a new seed of 0.
+ 170              	;@ All other values produce a maximal length sequence.
+ARM GAS  Reset_Handler.S 			page 4
+
+
+ 171              	
+ 172 0108 A10011E1 		TST    R1, R1, LSR #1                       ;@ top bit into Carry
+ 173 010c 6020B0E1 		MOVS   R2, R0, RRX                          ;@ 33 bit rotate right
+ 174 0110 0110A1E0 		ADC    R1, R1, R1                           ;@ carry into lsb of R1
+ 175 0114 002622E0 		EOR    R2, R2, R0, LSL #12                  ;@ (involved!)
+ 176 0118 220A22E0 		EOR    R0, R2, R2, LSR #20                  ;@ (similarly involved!)
+ 177              	
+ 178 011c 0EF0A0E1 		mov	pc, lr
+ 179              	
+ 180 0120 00400040 		.pool
+ 180      10000000 
+ 180      00000000 
+ 180      5C000000 
+ 180      14000000 
+ 181              			
+ 182              	rndLoc:		;@ use location after program as somewhat random seed value
+ 183              	
+ 184              	;@ *******************	
+ 185              		.data						;@ Store in RAM	
+ 186 0000 00000000 	bigN: 	.space BYTES_PER_ARRAY + BYTES_PER_WORD		;@ Big Number Test
+ 186      00000000 
+ 186      00000000 
+ 186      00000000 
+ 186      00000000 
+ 187              	
+ 188 0014 00000000 	randrb: .space (RAND_REG * 4)				;@ registers holding random values before
+ 188      00000000 
+ 188      00000000 
+ 188      00000000 
+ 188      00000000 
+ 189 002c 00000000 	randra: .space (RAND_REG * 4)				;@ registers holding random values after
+ 189      00000000 
+ 189      00000000 
+ 189      00000000 
+ 189      00000000 
+ 190              	
+ 191 0044 00000000 	usedrb: .space (USED_REG * 4)				;@ used registers before
+ 191      00000000 
+ 191      00000000 
+ 192 0050 00000000 	usedra:	.space (USED_REG * 4)				;@ used registers after
+ 192      00000000 
+ 192      00000000 
+ 193              	
+ 194 005c 00000000 	rndSeed:.space 2*4					;@ state for random number generator
+ 194      00000000 
+ 195              		
+ 196              		.end						;@ End of assembly in program file	
+ARM GAS  Reset_Handler.S 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000277 __GCC_VERSION
+                            *ABS*:00000001 __GCC
+                            *ABS*:0000020f __UVISION_VERSION
+     Reset_Handler.S:40     *ABS*:00000004 WORDS_PER_ARRAY
+     Reset_Handler.S:41     *ABS*:00000004 BYTES_PER_WORD
+     Reset_Handler.S:42     *ABS*:00000010 BYTES_PER_ARRAY
+     Reset_Handler.S:43     *ABS*:00000003 ARRAYS_PER_ROW
+     Reset_Handler.S:44     *ABS*:00000040 BYTES_PER_ROW
+     Reset_Handler.S:46     *ABS*:00000006 RAND_REG
+     Reset_Handler.S:47     *ABS*:00000003 USED_REG
+     Reset_Handler.S:53     .text:00000000 Reset_Handler
+     Reset_Handler.S:56     .text:00000000 $a
+     Reset_Handler.S:67     .text:0000000c main
+     Reset_Handler.S:64     .text:00000008 repeat
+     Reset_Handler.S:186    .data:00000000 bigN
+     Reset_Handler.S:182    .text:00000140 rndLoc
+     Reset_Handler.S:194    .data:0000005c rndSeed
+     Reset_Handler.S:74     .text:00000024 loop
+     Reset_Handler.S:188    .data:00000014 randrb
+     Reset_Handler.S:146    .text:000000d4 rndGen
+     Reset_Handler.S:191    .data:00000044 usedrb
+     Reset_Handler.S:192    .data:00000050 usedra
+     Reset_Handler.S:108    .text:00000074 p4r5sp
+     Reset_Handler.S:189    .data:0000002c randra
+     Reset_Handler.S:120    .text:00000094 p6r11
+     Reset_Handler.S:125    .text:000000a0 retWrg
+     Reset_Handler.S:142    .text:000000cc nxtRow
+     Reset_Handler.S:140    .text:000000c8 notEq
+     Reset_Handler.S:152    .text:000000e8 rgLoop
+     Reset_Handler.S:163    .text:00000108 myRand
+     Reset_Handler.S:180    .text:00000120 $d
+     Reset_Handler.S:186    .data:00000000 $d
+
+UNDEFINED SYMBOLS
+TestTableBigAdd
+bigAdd
+memcmp

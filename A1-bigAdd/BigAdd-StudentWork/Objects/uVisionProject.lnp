@@ -1,0 +1,8 @@
+--cpu ARM7TDMI
+".\objects\reset_handler.o"
+".\objects\test.o"
+".\objects\bigadd.o"
+".\objects\testtablebigadd.o"
+--ro-base 0x0 --entry 0x0 --rw-base 0x40000000 --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\uVisionProject.map" -o .\Objects\uVisionProject.axf

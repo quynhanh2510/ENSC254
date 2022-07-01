@@ -1,0 +1,477 @@
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 1
+
+
+   1              		.cpu arm7tdmi
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"TestTableBigAdd.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	TestTableBigAdd
+  16              		.section	.rodata
+  17              		.align	2
+  18              		.type	TestTableBigAdd, %object
+  19              		.size	TestTableBigAdd, 976
+  20              	TestTableBigAdd:
+  21 0000 00000000 		.word	0
+  22 0004 00000000 		.word	0
+  23 0008 00000000 		.word	0
+  24 000c 00000000 		.word	0
+  25 0010 00000000 		.word	0
+  26 0014 00000000 		.word	0
+  27 0018 00000000 		.word	0
+  28 001c 00000000 		.word	0
+  29 0020 00000000 		.word	0
+  30 0024 00000000 		.word	0
+  31 0028 00000000 		.word	0
+  32 002c 00000000 		.word	0
+  33 0030 00000000 		.word	0
+  34 0034 03000000 		.word	3
+  35 0038 00000000 		.word	0
+  36 003c 00000000 		.word	0
+  37 0040 01000000 		.word	1
+  38 0044 00000000 		.word	0
+  39 0048 00000000 		.word	0
+  40 004c 00000000 		.word	0
+  41 0050 01000000 		.word	1
+  42 0054 00000000 		.word	0
+  43 0058 00000000 		.word	0
+  44 005c 00000000 		.word	0
+  45 0060 01000000 		.word	1
+  46 0064 00000000 		.word	0
+  47 0068 00000000 		.word	0
+  48 006c 00000000 		.word	0
+  49 0070 00000000 		.word	0
+  50 0074 03000000 		.word	3
+  51 0078 00000000 		.word	0
+  52 007c 01000000 		.word	1
+  53 0080 02000000 		.word	2
+  54 0084 00000000 		.word	0
+  55 0088 00000000 		.word	0
+  56 008c 00000000 		.word	0
+  57 0090 01000000 		.word	1
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 2
+
+
+  58 0094 00000000 		.word	0
+  59 0098 00000000 		.word	0
+  60 009c 00000000 		.word	0
+  61 00a0 02000000 		.word	2
+  62 00a4 00000000 		.word	0
+  63 00a8 00000000 		.word	0
+  64 00ac 00000000 		.word	0
+  65 00b0 00000000 		.word	0
+  66 00b4 03000000 		.word	3
+  67 00b8 00000000 		.word	0
+  68 00bc 02000000 		.word	2
+  69 00c0 01000000 		.word	1
+  70 00c4 01000000 		.word	1
+  71 00c8 00000000 		.word	0
+  72 00cc 00000000 		.word	0
+  73 00d0 01000000 		.word	1
+  74 00d4 01000000 		.word	1
+  75 00d8 00000000 		.word	0
+  76 00dc 00000000 		.word	0
+  77 00e0 01000000 		.word	1
+  78 00e4 02000000 		.word	2
+  79 00e8 00000000 		.word	0
+  80 00ec 00000000 		.word	0
+  81 00f0 00000000 		.word	0
+  82 00f4 03000000 		.word	3
+  83 00f8 00000000 		.word	0
+  84 00fc 03000000 		.word	3
+  85 0100 01000000 		.word	1
+  86 0104 00000000 		.word	0
+  87 0108 03000000 		.word	3
+  88 010c 00000000 		.word	0
+  89 0110 02000000 		.word	2
+  90 0114 00000000 		.word	0
+  91 0118 00000000 		.word	0
+  92 011c 00000000 		.word	0
+  93 0120 02000000 		.word	2
+  94 0124 00000000 		.word	0
+  95 0128 00000000 		.word	0
+  96 012c 00000000 		.word	0
+  97 0130 00000000 		.word	0
+  98 0134 03000000 		.word	3
+  99 0138 00000000 		.word	0
+ 100 013c 04000000 		.word	4
+ 101 0140 01000000 		.word	1
+ 102 0144 00000080 		.word	-2147483648
+ 103 0148 00000000 		.word	0
+ 104 014c 00000000 		.word	0
+ 105 0150 01000000 		.word	1
+ 106 0154 00000080 		.word	-2147483648
+ 107 0158 00000000 		.word	0
+ 108 015c 00000000 		.word	0
+ 109 0160 02000000 		.word	2
+ 110 0164 00000000 		.word	0
+ 111 0168 01000000 		.word	1
+ 112 016c 00000000 		.word	0
+ 113 0170 00000000 		.word	0
+ 114 0174 03000000 		.word	3
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 3
+
+
+ 115 0178 00000000 		.word	0
+ 116 017c 05000000 		.word	5
+ 117 0180 02000000 		.word	2
+ 118 0184 00000080 		.word	-2147483648
+ 119 0188 FFFFFFFF 		.word	-1
+ 120 018c 00000000 		.word	0
+ 121 0190 01000000 		.word	1
+ 122 0194 00000080 		.word	-2147483648
+ 123 0198 00000000 		.word	0
+ 124 019c 00000000 		.word	0
+ 125 01a0 03000000 		.word	3
+ 126 01a4 00000000 		.word	0
+ 127 01a8 00000000 		.word	0
+ 128 01ac 01000000 		.word	1
+ 129 01b0 00000000 		.word	0
+ 130 01b4 03000000 		.word	3
+ 131 01b8 00000000 		.word	0
+ 132 01bc 06000000 		.word	6
+ 133 01c0 01000000 		.word	1
+ 134 01c4 04000000 		.word	4
+ 135 01c8 00000000 		.word	0
+ 136 01cc 00000000 		.word	0
+ 137 01d0 02000000 		.word	2
+ 138 01d4 05000000 		.word	5
+ 139 01d8 00000000 		.word	0
+ 140 01dc 00000000 		.word	0
+ 141 01e0 02000000 		.word	2
+ 142 01e4 09000000 		.word	9
+ 143 01e8 00000000 		.word	0
+ 144 01ec 00000000 		.word	0
+ 145 01f0 00000000 		.word	0
+ 146 01f4 03000000 		.word	3
+ 147 01f8 00000000 		.word	0
+ 148 01fc 07000000 		.word	7
+ 149 0200 01000000 		.word	1
+ 150 0204 00000080 		.word	-2147483648
+ 151 0208 00000000 		.word	0
+ 152 020c 00000000 		.word	0
+ 153 0210 02000000 		.word	2
+ 154 0214 00000080 		.word	-2147483648
+ 155 0218 FFFFFFFF 		.word	-1
+ 156 021c 00000000 		.word	0
+ 157 0220 03000000 		.word	3
+ 158 0224 00000000 		.word	0
+ 159 0228 00000000 		.word	0
+ 160 022c 01000000 		.word	1
+ 161 0230 00000000 		.word	0
+ 162 0234 03000000 		.word	3
+ 163 0238 00000000 		.word	0
+ 164 023c 08000000 		.word	8
+ 165 0240 02000000 		.word	2
+ 166 0244 00000080 		.word	-2147483648
+ 167 0248 00000000 		.word	0
+ 168 024c 00000000 		.word	0
+ 169 0250 03000000 		.word	3
+ 170 0254 00000080 		.word	-2147483648
+ 171 0258 FFFFFFFF 		.word	-1
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 4
+
+
+ 172 025c FFFFFFFF 		.word	-1
+ 173 0260 03000000 		.word	3
+ 174 0264 00000000 		.word	0
+ 175 0268 00000000 		.word	0
+ 176 026c 00000000 		.word	0
+ 177 0270 00000000 		.word	0
+ 178 0274 03000000 		.word	3
+ 179 0278 01000000 		.word	1
+ 180 027c 09000000 		.word	9
+ 181 0280 03000000 		.word	3
+ 182 0284 00000080 		.word	-2147483648
+ 183 0288 FFFFFFFF 		.word	-1
+ 184 028c FFFFFFFF 		.word	-1
+ 185 0290 01000000 		.word	1
+ 186 0294 00000080 		.word	-2147483648
+ 187 0298 00000000 		.word	0
+ 188 029c 00000000 		.word	0
+ 189 02a0 03000000 		.word	3
+ 190 02a4 00000000 		.word	0
+ 191 02a8 00000000 		.word	0
+ 192 02ac 00000000 		.word	0
+ 193 02b0 00000000 		.word	0
+ 194 02b4 03000000 		.word	3
+ 195 02b8 01000000 		.word	1
+ 196 02bc 0A000000 		.word	10
+ 197 02c0 01000000 		.word	1
+ 198 02c4 00000000 		.word	0
+ 199 02c8 00000000 		.word	0
+ 200 02cc 00000000 		.word	0
+ 201 02d0 04000000 		.word	4
+ 202 02d4 00000000 		.word	0
+ 203 02d8 00000000 		.word	0
+ 204 02dc 00000000 		.word	0
+ 205 02e0 04000000 		.word	4
+ 206 02e4 00000000 		.word	0
+ 207 02e8 00000000 		.word	0
+ 208 02ec 00000000 		.word	0
+ 209 02f0 00000000 		.word	0
+ 210 02f4 03000000 		.word	3
+ 211 02f8 FFFFFFFF 		.word	-1
+ 212 02fc 0B000000 		.word	11
+ 213 0300 04000000 		.word	4
+ 214 0304 00000080 		.word	-2147483648
+ 215 0308 FFFFFFFF 		.word	-1
+ 216 030c FFFFFFFF 		.word	-1
+ 217 0310 01000000 		.word	1
+ 218 0314 00000080 		.word	-2147483648
+ 219 0318 00000000 		.word	0
+ 220 031c 00000000 		.word	0
+ 221 0320 04000000 		.word	4
+ 222 0324 00000000 		.word	0
+ 223 0328 00000000 		.word	0
+ 224 032c 00000000 		.word	0
+ 225 0330 00000000 		.word	0
+ 226 0334 03000000 		.word	3
+ 227 0338 FFFFFFFF 		.word	-1
+ 228 033c 0C000000 		.word	12
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 5
+
+
+ 229 0340 03000000 		.word	3
+ 230 0344 00000080 		.word	-2147483648
+ 231 0348 FFFFFFFF 		.word	-1
+ 232 034c FFFFFFFF 		.word	-1
+ 233 0350 01000000 		.word	1
+ 234 0354 00000080 		.word	-2147483648
+ 235 0358 00000000 		.word	0
+ 236 035c 00000000 		.word	0
+ 237 0360 04000000 		.word	4
+ 238 0364 00000000 		.word	0
+ 239 0368 00000000 		.word	0
+ 240 036c 00000000 		.word	0
+ 241 0370 01000000 		.word	1
+ 242 0374 04000000 		.word	4
+ 243 0378 00000000 		.word	0
+ 244 037c 0D000000 		.word	13
+ 245 0380 01000000 		.word	1
+ 246 0384 00000080 		.word	-2147483648
+ 247 0388 00000000 		.word	0
+ 248 038c 00000000 		.word	0
+ 249 0390 03000000 		.word	3
+ 250 0394 00000080 		.word	-2147483648
+ 251 0398 FFFFFFFF 		.word	-1
+ 252 039c FFFFFFFF 		.word	-1
+ 253 03a0 04000000 		.word	4
+ 254 03a4 00000000 		.word	0
+ 255 03a8 00000000 		.word	0
+ 256 03ac 00000000 		.word	0
+ 257 03b0 01000000 		.word	1
+ 258 03b4 04000000 		.word	4
+ 259 03b8 00000000 		.word	0
+ 260 03bc 0E000000 		.word	14
+ 261 03c0 FFFFFFFF 		.word	-1
+ 262 03c4 00000000 		.word	0
+ 263 03c8 00000000 		.word	0
+ 264 03cc 00000000 		.word	0
+ 265              		.text
+ 266              	.Letext0:
+ 267              		.file 1 "TestTableBigAdd.c"
+ 268              		.section	.debug_info,"",%progbits
+ 269              	.Ldebug_info0:
+ 270 0000 54000000 		.4byte	0x54
+ 271 0004 0200     		.2byte	0x2
+ 272 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 273 000a 04       		.byte	0x4
+ 274 000b 01       		.uleb128 0x1
+ 275 000c 22000000 		.4byte	.LASF1
+ 276 0010 0C       		.byte	0xc
+ 277 0011 00000000 		.4byte	.LASF2
+ 278 0015 97000000 		.4byte	.LASF3
+ 279 0019 00000000 		.4byte	.Ldebug_line0
+ 280 001d 02       		.uleb128 0x2
+ 281 001e 40000000 		.4byte	0x40
+ 282 0022 2D000000 		.4byte	0x2d
+ 283 0026 03       		.uleb128 0x3
+ 284 0027 32000000 		.4byte	0x32
+ 285 002b F3       		.byte	0xf3
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 6
+
+
+ 286 002c 00       		.byte	0
+ 287 002d 04       		.uleb128 0x4
+ 288 002e 1D000000 		.4byte	0x1d
+ 289 0032 05       		.uleb128 0x5
+ 290 0033 04       		.byte	0x4
+ 291 0034 07       		.byte	0x7
+ 292 0035 8E000000 		.4byte	.LASF0
+ 293 0039 06       		.uleb128 0x6
+ 294 003a 04       		.byte	0x4
+ 295 003b 05       		.byte	0x5
+ 296 003c 696E7400 		.ascii	"int\000"
+ 297 0040 04       		.uleb128 0x4
+ 298 0041 39000000 		.4byte	0x39
+ 299 0045 07       		.uleb128 0x7
+ 300 0046 12000000 		.4byte	.LASF4
+ 301 004a 01       		.byte	0x1
+ 302 004b 0A       		.byte	0xa
+ 303 004c 2D000000 		.4byte	0x2d
+ 304 0050 01       		.byte	0x1
+ 305 0051 05       		.byte	0x5
+ 306 0052 03       		.byte	0x3
+ 307 0053 00000000 		.4byte	TestTableBigAdd
+ 308 0057 00       		.byte	0
+ 309              		.section	.debug_abbrev,"",%progbits
+ 310              	.Ldebug_abbrev0:
+ 311 0000 01       		.uleb128 0x1
+ 312 0001 11       		.uleb128 0x11
+ 313 0002 01       		.byte	0x1
+ 314 0003 25       		.uleb128 0x25
+ 315 0004 0E       		.uleb128 0xe
+ 316 0005 13       		.uleb128 0x13
+ 317 0006 0B       		.uleb128 0xb
+ 318 0007 03       		.uleb128 0x3
+ 319 0008 0E       		.uleb128 0xe
+ 320 0009 1B       		.uleb128 0x1b
+ 321 000a 0E       		.uleb128 0xe
+ 322 000b 10       		.uleb128 0x10
+ 323 000c 06       		.uleb128 0x6
+ 324 000d 00       		.byte	0
+ 325 000e 00       		.byte	0
+ 326 000f 02       		.uleb128 0x2
+ 327 0010 01       		.uleb128 0x1
+ 328 0011 01       		.byte	0x1
+ 329 0012 49       		.uleb128 0x49
+ 330 0013 13       		.uleb128 0x13
+ 331 0014 01       		.uleb128 0x1
+ 332 0015 13       		.uleb128 0x13
+ 333 0016 00       		.byte	0
+ 334 0017 00       		.byte	0
+ 335 0018 03       		.uleb128 0x3
+ 336 0019 21       		.uleb128 0x21
+ 337 001a 00       		.byte	0
+ 338 001b 49       		.uleb128 0x49
+ 339 001c 13       		.uleb128 0x13
+ 340 001d 2F       		.uleb128 0x2f
+ 341 001e 0B       		.uleb128 0xb
+ 342 001f 00       		.byte	0
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 7
+
+
+ 343 0020 00       		.byte	0
+ 344 0021 04       		.uleb128 0x4
+ 345 0022 26       		.uleb128 0x26
+ 346 0023 00       		.byte	0
+ 347 0024 49       		.uleb128 0x49
+ 348 0025 13       		.uleb128 0x13
+ 349 0026 00       		.byte	0
+ 350 0027 00       		.byte	0
+ 351 0028 05       		.uleb128 0x5
+ 352 0029 24       		.uleb128 0x24
+ 353 002a 00       		.byte	0
+ 354 002b 0B       		.uleb128 0xb
+ 355 002c 0B       		.uleb128 0xb
+ 356 002d 3E       		.uleb128 0x3e
+ 357 002e 0B       		.uleb128 0xb
+ 358 002f 03       		.uleb128 0x3
+ 359 0030 0E       		.uleb128 0xe
+ 360 0031 00       		.byte	0
+ 361 0032 00       		.byte	0
+ 362 0033 06       		.uleb128 0x6
+ 363 0034 24       		.uleb128 0x24
+ 364 0035 00       		.byte	0
+ 365 0036 0B       		.uleb128 0xb
+ 366 0037 0B       		.uleb128 0xb
+ 367 0038 3E       		.uleb128 0x3e
+ 368 0039 0B       		.uleb128 0xb
+ 369 003a 03       		.uleb128 0x3
+ 370 003b 08       		.uleb128 0x8
+ 371 003c 00       		.byte	0
+ 372 003d 00       		.byte	0
+ 373 003e 07       		.uleb128 0x7
+ 374 003f 34       		.uleb128 0x34
+ 375 0040 00       		.byte	0
+ 376 0041 03       		.uleb128 0x3
+ 377 0042 0E       		.uleb128 0xe
+ 378 0043 3A       		.uleb128 0x3a
+ 379 0044 0B       		.uleb128 0xb
+ 380 0045 3B       		.uleb128 0x3b
+ 381 0046 0B       		.uleb128 0xb
+ 382 0047 49       		.uleb128 0x49
+ 383 0048 13       		.uleb128 0x13
+ 384 0049 3F       		.uleb128 0x3f
+ 385 004a 0C       		.uleb128 0xc
+ 386 004b 02       		.uleb128 0x2
+ 387 004c 0A       		.uleb128 0xa
+ 388 004d 00       		.byte	0
+ 389 004e 00       		.byte	0
+ 390 004f 00       		.byte	0
+ 391              		.section	.debug_aranges,"",%progbits
+ 392 0000 14000000 		.4byte	0x14
+ 393 0004 0200     		.2byte	0x2
+ 394 0006 00000000 		.4byte	.Ldebug_info0
+ 395 000a 04       		.byte	0x4
+ 396 000b 00       		.byte	0
+ 397 000c 0000     		.2byte	0
+ 398 000e 0000     		.2byte	0
+ 399 0010 00000000 		.4byte	0
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 8
+
+
+ 400 0014 00000000 		.4byte	0
+ 401              		.section	.debug_line,"",%progbits
+ 402              	.Ldebug_line0:
+ 403 0000 2E000000 		.section	.debug_str,"MS",%progbits,1
+ 403      02002800 
+ 403      00000201 
+ 403      FB0E0D00 
+ 403      01010101 
+ 404              	.LASF2:
+ 405 0000 54657374 		.ascii	"TestTableBigAdd.c\000"
+ 405      5461626C 
+ 405      65426967 
+ 405      4164642E 
+ 405      6300
+ 406              	.LASF4:
+ 407 0012 54657374 		.ascii	"TestTableBigAdd\000"
+ 407      5461626C 
+ 407      65426967 
+ 407      41646400 
+ 408              	.LASF1:
+ 409 0022 474E5520 		.ascii	"GNU C11 6.3.1 20170620 (release) [ARM/embedded-6-br"
+ 409      43313120 
+ 409      362E332E 
+ 409      31203230 
+ 409      31373036 
+ 410 0055 616E6368 		.ascii	"anch revision 249437] -gdwarf-2 -O0 -fomit-frame-po"
+ 410      20726576 
+ 410      6973696F 
+ 410      6E203234 
+ 410      39343337 
+ 411 0088 696E7465 		.ascii	"inter\000"
+ 411      7200
+ 412              	.LASF0:
+ 413 008e 73697A65 		.ascii	"sizetype\000"
+ 413      74797065 
+ 413      00
+ 414              	.LASF3:
+ 415 0097 443A5C45 		.ascii	"D:\\Engineering\\2021 Summer\\ENSC 254\\A1\\BigAdd-"
+ 415      6E67696E 
+ 415      65657269 
+ 415      6E675C32 
+ 415      30323120 
+ 416 00c5 474E552D 		.ascii	"GNU-cpp\000"
+ 416      63707000 
+ 417              		.ident	"GCC: (GNU Tools for ARM Embedded Processors 6-2017-q2-update) 6.3.1 20170620 (release) [AR
+ARM GAS  C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 TestTableBigAdd.c
+C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s:20     .rodata:00000000 TestTableBigAdd
+C:\Users\anhqu\AppData\Local\Temp\ccomKc75.s:17     .rodata:00000000 $d
+
+NO UNDEFINED SYMBOLS

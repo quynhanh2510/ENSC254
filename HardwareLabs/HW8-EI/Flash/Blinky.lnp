@@ -1,0 +1,27 @@
+--cpu ARM7TDMI
+".\flash\str73x.o"
+".\flash\inithw.o"
+".\flash\73x_it.o"
+".\flash\retarget.o"
+".\flash\dabt.o"
+".\flash\f_i_bit.o"
+".\flash\fiq.o"
+".\flash\irq.o"
+".\flash\pabt.o"
+".\flash\swi.o"
+".\flash\undef.o"
+".\flash\73x_cfg.o"
+".\flash\73x_gpio.o"
+".\flash\73x_uart.o"
+".\flash\73x_prccu.o"
+".\flash\73x_eic.o"
+".\flash\73x_tim.o"
+".\flash\73x_cmu.o"
+".\flash\bigadd.o"
+".\flash\main.o"
+".\flash\assembly.o"
+".\flash\bigfib.o"
+--strict --scatter ".\Flash\Blinky.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Flash\Blinky.map" -o .\Flash\Blinky.axf

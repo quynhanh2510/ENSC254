@@ -1,0 +1,3 @@
+This project is a program for the ST730FZ2T7
+using 'HITEX STR730 EVALBOARD' Evaluation Board.
+

@@ -1,0 +1,112 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;@======================================================
+                       ======================
+    2 00000000         ;@ Name         Reset_Handler.s
+    3 00000000         ;@ Description  Branches to Start subroutine and align R
+                       eadOnly Data
+    4 00000000         ;@ Copyright (C) 2021 Craig Scratchley    wcs (at) sfu (
+                       dot) ca  
+    5 00000000         ;@======================================================
+                       ======================
+    6 00000000         
+    7 00000000         ;@ Highly recommended in Edit > Configuration 
+    8 00000000         ;@ Set "Auto Indent" to "None"
+    9 00000000         ;@ Tabs set for 8 characters for ASM files
+   10 00000000         
+   11 00000000                 extern           Start
+   12 00000000                 preserve8
+   13 00000000         
+   14 00000000         ;@ Make the alighment relatively large for ReadOnly Data
+                       .
+   15 00000000                 AREA             ||.bRODATA||, DATA, READONLY, A
+LIGN=12
+   16 00000000         topROD  space            0
+   17 00000000         ;@ *******************
+   18 00000000                 AREA             ||.aRESET||, CODE, READONLY, Al
+ign=3
+   19 00000000                 ENTRY
+   20 00000000                 GLOBAL           Reset_Handler
+   21 00000000         
+   22 00000000         Reset_Handler
+   23 00000000         ; ldr sp, =Stack_Top ;@ Initialize SP just past the end 
+                       of RAM
+   24 00000000         
+   25 00000000         ;@ ******* The debugger will not highlight lines in this
+                        file ******
+   26 00000000 EAFFFFFE        b                Start
+   27 00000004         
+   28 00000004 E51FD004        LDR              SP, =topROD ;@ this is garbage
+   29 00000008                 END                          ;@ End of assembly 
+                                                            in program file  
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931,A1450E --depend=.\objects\res
+et_handler.d -o.\objects\reset_handler.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5
+\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION S
+ETA 527" --list=.\listings\reset_handler.lst Reset_Handler.S
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+topROD 00000000
+
+Symbol: topROD
+   Definitions
+      At line 16 in file Reset_Handler.S
+   Uses
+      At line 28 in file Reset_Handler.S
+Comment: topROD used once
+|.bRODATA| 00000000
+
+Symbol: |.bRODATA|
+   Definitions
+      At line 15 in file Reset_Handler.S
+   Uses
+      None
+Comment: |.bRODATA| unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 22 in file Reset_Handler.S
+   Uses
+      At line 20 in file Reset_Handler.S
+Comment: Reset_Handler used once
+|.aRESET| 00000000
+
+Symbol: |.aRESET|
+   Definitions
+      At line 18 in file Reset_Handler.S
+   Uses
+      None
+Comment: |.aRESET| unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+Start 00000000
+
+Symbol: Start
+   Definitions
+      At line 11 in file Reset_Handler.S
+   Uses
+      At line 26 in file Reset_Handler.S
+Comment: Start used once
+1 symbol
+339 symbols in table

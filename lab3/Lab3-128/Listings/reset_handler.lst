@@ -1,0 +1,278 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;@======================================================
+                       ======================
+    2 00000000         ;@ Name         Reset_Handler.s
+    3 00000000         ;@ Description  128-bit Fibonacci calculation
+    4 00000000         ;@ Copyright (C) 2021 Craig Scratchley    wcs (at) sfu (
+                       dot) ca  
+    5 00000000         ;@======================================================
+                       ======================
+    6 00000000         
+    7 00000000         ;@ Highly recommended in Edit > Configuration 
+    8 00000000         ;@ Tabs set for 8 characters for ASM files
+    9 00000000         
+   10 00000000                 AREA             ||.aRESET||, CODE, READONLY, Al
+ign=3
+   11 00000000                 EXPORT           overfl
+   12 00000000                 EXPORT           done
+   13 00000000         
+   14 00000000         ;@ Pointers to the variables
+   15 00000000 E59F0090        ldr              r0, =prev   ;@ prev is 128-bit
+   16 00000004 E59F1090        ldr              r1, =curr   ;@ curr is 128-bit
+   17 00000008         
+   18 00000008         ;@ Load a 128-bit 0 into variable prev and 1 into curr
+   19 00000008 E3A02000        mov              r2, #0      ;@ Constant used fo
+                                                            r initializing the 
+                                                            variables
+   20 0000000C E5802000        str              r2, [r0, #0] ;@ Set the value o
+                                                            f prev
+   21 00000010 E5802004        str              r2, [r0, #4]
+   22 00000014 E5802008        str              r2, [r0, #8]
+   23 00000018 E580200C        str              r2, [r0, #12]
+   24 0000001C         
+   25 0000001C E5812000        str              r2, [r1, #0] ;@ Set the value o
+                                                            f curr
+   26 00000020 E5812004        str              r2, [r1, #4]
+   27 00000024 E5812008        str              r2, [r1, #8]
+   28 00000028 E3A02001        mov              r2, #1      ;@ Constant used fo
+                                                            r initializing LSW 
+                                                            of curr
+   29 0000002C E581200C        str              r2, [r1, #12]
+   30 00000030         
+   31 00000030         ;@ What Fibonacci subscript is variable curr holding?
+   32 00000030 E3A05001        mov              r5, #1
+   33 00000034         
+   34 00000034 E35500B9 
+                       loop    cmp              r5, #185
+   35 00000038         
+   36 00000038 0AFFFFFE        beq              done
+   37 0000003C         
+   38 0000003C EB000003        bl               add128      ;@ Perform a 128-bi
+                                                            t add
+   39 00000040         
+   40 00000040         ;@ *** If our variable curr did not overflow… ***
+   41 00000040 72855001        addvc            r5, r5, #1  ;@ *** Increment th
+                                                            e subscript (in r5)
+                                                            , and ***
+   42 00000044 7AFFFFFA        bvc              loop        ;@ ***     branch b
+                                                            ack to "loop" ***
+   43 00000048         
+   44 00000048 EAFFFFFE 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                       overfl  b                overfl      ;@ Oops, the add ov
+                                                            erflowed!  Fib numb
+                                                            er in prev.
+   45 0000004C         
+   46 0000004C EAFFFFFE 
+                       done    b                done        ;@ Program done! Lo
+                                                            op forever. Fib num
+                                                            ber in curr.
+   47 00000050         
+   48 00000050         ;@ Subroutine to add 128-bit unsigned variables and move
+                        one of them. 
+   49 00000050         ;@ curr at r1 moved to prev at r0 and sum put in curr.  
+                        
+   50 00000050         ;@  Carry flag set if unsigned overflow did occur.
+   51 00000050         ;@ Does not modify r0 or r1.
+   52 00000050 E1A00000 
+                       add128  nop                          ;@ Do nothing (NO O
+                                                            Peration)
+   53 00000054 E1A0A00E        mov              r10, lr     ;@ *** May need to 
+                                                            do something here t
+                                                            o help to return **
+                                                            *
+   54 00000058         
+   55 00000058         ;@ We clear the carry flag to begin with.
+   56 00000058         ;@ Start with the least significant word (word 0 at offs
+                       et 12).
+   57 00000058         ;@ We add all words using a carry.
+   58 00000058         ;@ We set the status flags for subsequent operations.
+   59 00000058         
+   60 00000058 E2900000        adds             r0, r0, #0  ;@ Clear the carry 
+                                                            flag
+   61 0000005C         
+   62 0000005C E3A0200C        mov              r2, #12
+   63 00000060 EB000006        bl               doPart
+   64 00000064         
+   65 00000064 E3A02008        mov              r2, #8
+   66 00000068 EB000004        bl               doPart
+   67 0000006C         
+   68 0000006C E3A02004        mov              r2, #4
+   69 00000070 EB000002        bl               doPart
+   70 00000074         
+   71 00000074 E3A02000        mov              r2, #0
+   72 00000078 EB000000        bl               doPart
+   73 0000007C         
+   74 0000007C         ;@ *** Complete the 128-bit addition algorithm ***
+   75 0000007C         
+   76 0000007C         ;@ *** What issue do/might we have returning from subrou
+                       tine? How can we fix it? 
+   77 0000007C E1A0F00A        mov              pc, r10     ;@ *** Return from 
+                                                            subroutine ***
+   78 00000080         
+   79 00000080         ;@ Subroutine to load parts of operands, do a 32-bit add
+                       , 
+   80 00000080         ;@  move curr part into prev part and store
+   81 00000080         ;@  the result of the add in place of curr part.
+   82 00000080         ;@ r0 points to the beginning of prev
+   83 00000080         ;@ r1 points to the beginning of curr
+   84 00000080         ;@ <??> is <what ???>
+   85 00000080         ;@  Does not modify r0 or r1.
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   86 00000080         
+   87 00000080         ;@ *** Update this subroutine to take another argument s
+                       o it can
+   88 00000080         ;@     be reused for processing all four words ***
+   89 00000080 E7903002 
+                       doPart  ldr              r3,  [r0, r2] ;@ Load a value f
+                                                            rom prev
+   90 00000084 E791C002        ldr              r12, [r1, r2] ;@ Load a value f
+                                                            rom curr 
+   91 00000088 E780C002        str              r12, [r0, r2] ;@    ... move in
+                                                            to prev
+   92 0000008C         ;@ 32-bit add
+   93 0000008C E0B3300C        adcs             r3,  r3, r12 ;@ Add words at r3
+                                                             with carry, set st
+                                                            atus flags
+   94 00000090 E7813002        str              r3,  [r1, r2] ;@ Store the resu
+                                                            lt into curr
+   95 00000094 E1A0F00E        mov              pc,  lr     ;@ Return from subr
+                                                            outine
+   96 00000098         
+   97 00000098         ;@ *******************
+   98 00000098 00000000 
+              00000000         AREA             myData, DATA, READWRITE, Align=
+2
+   99 00000000         ;@ variables start at address 0x4000 0000
+  100 00000000         
+  101 00000000 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00       prev    space            16          ;@ Previous Fibonac
+                                                            ci value (128-bit) 
+                                                            ***
+  102 00000010 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00       curr    space            16          ;@ Current Fibonacc
+                                                            i value (128-bit) *
+                                                            ** 
+  103 00000020         
+  104 00000020                 END                          ;@ End of assembly 
+                                                            in program file 
+Command Line: --debug --xref --diag_suppress=9931,A1450E --depend=.\objects\res
+et_handler.d -o.\objects\reset_handler.o -ID:\Keil_v5\ARM\RV31\INC -ID:\Keil_v5
+\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION S
+ETA 527" --list=.\listings\reset_handler.lst Reset_Handler.S
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+add128 00000050
+
+Symbol: add128
+   Definitions
+      At line 52 in file Reset_Handler.S
+   Uses
+      At line 38 in file Reset_Handler.S
+Comment: add128 used once
+doPart 00000080
+
+Symbol: doPart
+   Definitions
+      At line 89 in file Reset_Handler.S
+   Uses
+      At line 63 in file Reset_Handler.S
+      At line 66 in file Reset_Handler.S
+      At line 69 in file Reset_Handler.S
+      At line 72 in file Reset_Handler.S
+
+done 0000004C
+
+Symbol: done
+   Definitions
+      At line 46 in file Reset_Handler.S
+   Uses
+      At line 12 in file Reset_Handler.S
+      At line 36 in file Reset_Handler.S
+      At line 46 in file Reset_Handler.S
+
+loop 00000034
+
+Symbol: loop
+   Definitions
+      At line 34 in file Reset_Handler.S
+   Uses
+      At line 42 in file Reset_Handler.S
+Comment: loop used once
+overfl 00000048
+
+Symbol: overfl
+   Definitions
+      At line 44 in file Reset_Handler.S
+   Uses
+      At line 11 in file Reset_Handler.S
+      At line 44 in file Reset_Handler.S
+
+|.aRESET| 00000000
+
+Symbol: |.aRESET|
+   Definitions
+      At line 10 in file Reset_Handler.S
+   Uses
+      None
+Comment: |.aRESET| unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+curr 00000010
+
+Symbol: curr
+   Definitions
+      At line 102 in file Reset_Handler.S
+   Uses
+      At line 16 in file Reset_Handler.S
+Comment: curr used once
+myData 00000000
+
+Symbol: myData
+   Definitions
+      At line 98 in file Reset_Handler.S
+   Uses
+      None
+Comment: myData unused
+prev 00000000
+
+Symbol: prev
+   Definitions
+      At line 101 in file Reset_Handler.S
+   Uses
+      At line 15 in file Reset_Handler.S
+Comment: prev used once
+3 symbols
+343 symbols in table

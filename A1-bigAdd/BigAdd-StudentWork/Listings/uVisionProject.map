@@ -1,0 +1,150 @@
+Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
+
+==============================================================================
+
+Section Cross References
+
+    reset_handler.o(.aRESET) refers to test.o(.text) for Start
+    reset_handler.o(.aRESET) refers to reset_handler.o(.bRODATA) for topROD
+    test.o(.text) refers to bigadd.o(.text) for bigAdd
+    test.o(.text) refers to memcmp.o(.text) for memcmp
+    test.o(.text) refers to test.o(aSTACK) for Stack_Top
+    test.o(.text) refers to testtablebigadd.o(.constdata) for TestTableBigAdd
+    test.o(.text) refers to test.o(myData) for bigN
+
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    .aRESET                                  0x00000000   Section       12  reset_handler.o(.aRESET)
+    ../clib/string.c                         0x00000000   Number         0  memcmp.o ABSOLUTE
+    Reset_Handler.S                          0x00000000   Number         0  reset_handler.o ABSOLUTE
+    TestTableBigAdd.c                        0x00000000   Number         0  testtablebigadd.o ABSOLUTE
+    bigAdd.S                                 0x00000000   Number         0  bigadd.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    test.s                                   0x00000000   Number         0  test.o ABSOLUTE
+    .text                                    0x0000000c   Section      332  test.o(.text)
+    rndLoc                                   0x00000124   Data           0  test.o(.text)
+    .text                                    0x00000158   Section      272  bigadd.o(.text)
+    .text                                    0x00000268   Section        0  memcmp.o(.text)
+    .bRODATA                                 0x00001000   Section        0  reset_handler.o(.bRODATA)
+    .constdata                               0x00001000   Section     1104  testtablebigadd.o(.constdata)
+    topROD                                   0x00001000   Data           0  reset_handler.o(.bRODATA)
+    aSTACK                                   0x40000000   Section     1024  test.o(aSTACK)
+    myData                                   0x40000400   Section      100  test.o(myData)
+    Stack_Top                                0x40000400   Data           0  test.o(aSTACK)
+    bigN                                     0x40000400   Data          20  test.o(myData)
+    randrb                                   0x40000414   Data          24  test.o(myData)
+    randra                                   0x4000042c   Data          24  test.o(myData)
+    usedrb                                   0x40000444   Data          12  test.o(myData)
+    usedra                                   0x40000450   Data          12  test.o(myData)
+    rndSeed                                  0x4000045c   Data           8  test.o(myData)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$ARM_ISAv4$S$PE$A:L22$X:L11$S22$IEEE1$~IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$ROPI$EBA8$STANDARDLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    Reset_Handler                            0x00000000   ARM Code       0  reset_handler.o(.aRESET)
+    repeat                                   0x0000000c   ARM Code       4  test.o(.text)
+    Start                                    0x00000010   ARM Code       4  test.o(.text)
+    bigAdd                                   0x00000158   ARM Code       0  bigadd.o(.text)
+    memcmp                                   0x00000268   ARM Code     172  memcmp.o(.text)
+    TestTableBigAdd                          0x00001000   Data        1104  testtablebigadd.o(.constdata)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x00000000
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000018b4, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001450, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000000   0x0000000c   Code   RO            2  * .aRESET             reset_handler.o
+    0x0000000c   0x0000000c   0x0000014c   Code   RO            7    .text               test.o
+    0x00000158   0x00000158   0x00000110   Code   RO           12    .text               bigadd.o
+    0x00000268   0x00000268   0x000000ac   Code   RO           25    .text               c_4.l(memcmp.o)
+    0x00000314   0x00000314   0x00000cec   PAD
+    0x00001000   0x00001000   0x00000000   Data   RO            1    .bRODATA            reset_handler.o
+    0x00001000   0x00001000   0x00000450   Data   RO           15    .constdata          testtablebigadd.o
+
+
+    Execution Region ER_RW (Exec base: 0x40000000, Load base: 0x00001450, Size: 0x00000464, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x40000000   0x00001450   0x00000400   Data   RW            8    aSTACK              test.o
+    0x40000400   0x00001850   0x00000064   Data   RW            9    myData              test.o
+
+
+    Execution Region ER_ZI (Exec base: 0x40000464, Load base: 0x000018b4, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+
+    **** No section assigned to this execution region ****
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       272          0          0          0          0        304   bigadd.o
+        12          4          0          0          0        280   reset_handler.o
+       332         52          0       1124          0        300   test.o
+         0          0       1104          0          0       1882   testtablebigadd.o
+
+    ----------------------------------------------------------------------
+       616         56       1104       1124          0       2766   Object Totals
+         0          0          0          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+       172          0          0          0          0         68   memcmp.o
+
+    ----------------------------------------------------------------------
+      3480          0          0          0          0         68   Library Totals
+      3308          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+       172          0          0          0          0         68   c_4.l
+
+    ----------------------------------------------------------------------
+      3480          0          0          0          0         68   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      4096         56       1104       1124          0       2834   Grand Totals
+      4096         56       1104       1124          0       2834   ELF Image Totals
+      4096         56       1104       1124          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 5200 (   5.08kB)
+    Total RW  Size (RW Data + ZI Data)              1124 (   1.10kB)
+    Total ROM Size (Code + RO Data + RW Data)       6324 (   6.18kB)
+
+==============================================================================
+

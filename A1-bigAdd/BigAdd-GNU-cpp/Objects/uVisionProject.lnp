@@ -1,0 +1,1 @@
+-T ./gcc_arm.ld -Wl,-Map="./Listings/uVisionProject.map" -o "./Objects/uVisionProject.elf" "./objects/reset_handler.o" "./objects/testtablebigadd.o" "./objects/bigadd.o" -nostartfiles -lm

@@ -1,0 +1,6 @@
+Dependencies for Project 'uVisionProject', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Reset_Handler.S)(0x60CCD138)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --diag_suppress=A1450E-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527"--list .\listings\reset_handler.lst --xref -o .\objects\reset_handler.o --depend .\objects\reset_handler.d)
+F (.\test.s)(0x60E600D4)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --diag_suppress=A1450E-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527"--list .\listings\test.lst --xref -o .\objects\test.o --depend .\objects\test.d)
+F (.\bigAdd.S)(0x6113609A)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --diag_suppress=A1450E-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527"--list .\listings\bigadd.lst --xref -o .\objects\bigadd.o --depend .\objects\bigadd.d)
+F (.\TestTableBigAdd.c)(0x60E600B6)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527"-o .\objects\testtablebigadd.o --omf_browse .\objects\testtablebigadd.crf --depend .\objects\testtablebigadd.d)
+F (.\simulator.ini)(0x60CCD15C)()

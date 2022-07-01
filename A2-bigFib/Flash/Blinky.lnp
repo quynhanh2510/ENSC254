@@ -1,0 +1,13 @@
+--cpu ARM7TDMI
+".\flash\str73x.o"
+".\flash\inithw.o"
+".\flash\73x_it.o"
+".\flash\retarget.o"
+"C:\Keil_v5\ARM\RV31\LIB\ST\STR73xR.LIB"
+".\flash\bigadd.o"
+".\flash\bigfib.o"
+".\flash\main.o"
+--strict --scatter ".\Flash\Blinky.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Flash\Blinky.map" -o .\Flash\Blinky.axf
